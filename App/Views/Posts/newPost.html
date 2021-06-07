@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="col-lg-12 center p-2">
+        <div class="card p-2 rounded shadow-sm">
+            <div class="card-header">
+                <h5>Nuevo post</h5>
+            </div>
+            <div class="card-body">
+                <form action="savePost" method="POST">
+
+                    <div class="form">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Titulo del post</label>
+                            <input type="text" name="title" class="form-control" placeholder="Titulo del post" aria-describedby="basic-addon2">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="" class="form-label">Contenido del post</label>
+                            <textarea name="content" class="form-control" placeholder="Titulo del post" aria-describedby="basic-addon2"></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <input type="submit" class="btn btn-primary w-100" values="Crear"> 
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
