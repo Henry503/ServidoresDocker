@@ -12,5 +12,16 @@ services:
             - 3306:3306
         expose:
             - "3306"
+
+    app:
+        build: .
+        ports:
+            -   "8001:80"
+        volumes:
+            -   ./www:/var/www/html/
+        depends_on:
+            -   dba
+        networks:
+            -   default
 volumes:
     persistent:
