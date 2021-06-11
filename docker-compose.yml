@@ -23,5 +23,19 @@ services:
             -   dba
         networks:
             -   default
+
+    phpmyadmin:
+        image:  phpmyadmin/phpmyadmin
+        depends_on:
+            -   dba
+        ports:
+            -   8000:80
+        environment:
+            MYSQL_USER: luis
+            MYSQL_PASSWORD: parcial
+            MYSQL_ROOT_PASSWORD: parcial
+            PMA_HOST: dba   
+        networks:
+            -   default
 volumes:
     persistent:
