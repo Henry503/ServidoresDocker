@@ -37,5 +37,12 @@ services:
             PMA_HOST: dba   
         networks:
             -   default
+    redis:
+        image: "redis:alpine"
+        container_name: redis_cache
+        depends_on:
+            -   dba
+        networks:
+            -   default    
 volumes:
     persistent:
