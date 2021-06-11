@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="col-lg-12 center p-2">
+        <div class="card p-2 rounded shadow-sm">
+            <div class="card-header">
+                <h5>Nuevo post</h5>
+            </div>
+            <div class="card-body">
+                <form action="" id="form_post" enctype="multipart/form-data">
+
+                    <div class="form">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Titulo del post</label>
+                            <input type="text" name="title" class="form-control" placeholder="Titulo del post" aria-describedby="basic-addon2">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="" class="form-label">Contenido del post</label>
+                            <textarea name="content" class="form-control" placeholder="Titulo del post" aria-describedby="basic-addon2"></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <input type="submit" id="btnsubmit" class="btn btn-primary w-100" values="Crear"> 
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        let dataCita = document.getElementById("form_post")
+        let objPost = {}
+        $('#btnsubmit').click(function(e){
+            e.preventDefault();
+            
+            let formToSend = new FormData(dataCita)
+            formToSend.forEach(function(value,key){
+                objPost[key] = value
+            })
+
+            let {title,content} = objPost;
+
+            $.ajax({
+                url: 'savePost',
+                method: 'POST',
+                data: {"title": title,"content":content},
+                success: function(data){
+                    toastr.success(data);
+                }
+            })
+        })
+    })
+</script>
+{% endblock %}
