@@ -1,1 +1,16 @@
-
+version: "3.8"
+services:
+    dba:
+        build:
+            context: .
+            dockerfile: ./db/Dockerfile
+        image: parcialdb
+        container_name: database_parcial
+        restart: always
+        command: --default-authentication-plugin=mysql_native_password
+        ports: 
+            - 3306:3306
+        expose:
+            - "3306"
+volumes:
+    persistent:
